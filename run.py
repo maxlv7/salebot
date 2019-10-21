@@ -23,6 +23,8 @@ def hint():
 @app.route('/', methods=["GET", "POST"])
 def index():
     res = request.get_json()
+
+    botLog.info(res)
     # 好友消息
     # subtype
     if res.get("message_type") == 'private':

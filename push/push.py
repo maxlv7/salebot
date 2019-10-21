@@ -19,10 +19,10 @@ def send_group_msg(group_id, message, auto_escape=False):
     }
     res = requests.post(msg_config.get("send_group_msg"), json=data)
     if res.json().get("status") == "ok":
-        botLog.info(f"转发到{group_id}---{message[:10]}成功!")
+        botLog.info(f"转发到{group_id}---<<<成功!>>>{message[:10]}")
     else:
-        botLog.info(f"转发到{group_id}---{message[:10]}失败!")
+        botLog.info(f"转发到{group_id}---<<<失败!>>>{message[:10]}")
 
 
 if __name__ == '__main__':
-    send_group_msg("157777470", "test")
+    send_group_msg("644919551", "test")
