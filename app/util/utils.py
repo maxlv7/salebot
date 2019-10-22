@@ -42,13 +42,11 @@ def to_online_pic(img_name: str):
 
 
 def get_contact(qq, we_chat, phone):
-    msg = "\n----联系方式----\n"
+    msg = "\n"
     if qq != "" and qq != None:
         msg+=f"qq:{qq}\n"
     if we_chat != "" and we_chat != None:
         msg+=f"微信:{we_chat}\n"
     if phone != "" and phone != None:
         msg+=f"手机:{phone}\n"
-
-    msg+="----联系方式----"
     return msg
