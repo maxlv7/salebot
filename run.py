@@ -24,6 +24,8 @@ def hint():
 def index():
     res = request.get_json()
 
+    if res is None:
+        return jsonify(success=False)
     botLog.info(res)
     # 好友消息
     # subtype
