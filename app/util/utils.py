@@ -1,6 +1,8 @@
 import random
 import time
 
+from PIL import Image
+
 from config import img_config
 
 
@@ -59,3 +61,12 @@ def get_contact(qq, we_chat, phone):
     if phone != "" and phone != None:
         msg+=f"手机:{phone}\n"
     return msg
+
+def save_img(bytes, file_path,quality=50):
+    im = Image.open(bytes)
+
+    mode_list = ['1', 'L', 'I', 'F', 'P', 'RGB', 'RGBA', 'CMYK', 'YCbCr']
+    if im.mode in mode_list:
+        im = im.convert('RGB')
+    # subsampling=0
+    im.save("{}".format(file_path), 'jpeg', quality=quality)

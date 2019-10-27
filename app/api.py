@@ -1,10 +1,11 @@
 import os
+from io import BytesIO
 
 from flask import Blueprint, request, jsonify, current_app as app
 
 from app.util.data_format import data_format
 from app.util.db import connection
-from app.util.utils import get_random_filename, get_type_name_by_id, get_contact
+from app.util.utils import get_random_filename, get_type_name_by_id, get_contact, save_img
 from config import config
 from log import botLog
 from mythread import executor
@@ -25,8 +26,14 @@ def get_info():
 
             filename = "{}.jpg".format(get_random_filename())
             new_file = os.path.join(upload_folder, filename)
-            file.save(new_file)
 
+            MAX_FILE_SIZE = 1.5 * 1024 * 1024
+            bytes_ = BytesIO(file.stream.read())
+            file_size = len(bytes_.read())
+            if file_size>MAX_FILE_SIZE:
+                save_img(bytes_,new_file)
+            else:
+                save_img(bytes_,new_file,quality=100)
             db_filename = os.path.join("upload", filename)
             has_img = True
         type = request.form["type"]
