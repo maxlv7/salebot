@@ -62,7 +62,7 @@ def get_contact(qq, we_chat, phone):
         msg+=f"手机:{phone}\n"
     return msg
 
-def save_img(bytes, file_path,quality=50):
+def save_img(bytes, file_path,quality=35):
     im = Image.open(bytes)
 
     mode_list = ['1', 'L', 'I', 'F', 'P', 'RGB', 'RGBA', 'CMYK', 'YCbCr']

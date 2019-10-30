@@ -30,6 +30,8 @@ def get_info():
             MAX_FILE_SIZE = 1.5 * 1024 * 1024
             bytes_ = BytesIO(file.stream.read())
             file_size = len(bytes_.read())
+            MB = file_size/(1024**2)
+            botLog.info(f"这次上传的图片大小为{MB:.2f}/MB {file_size}/B")
             if file_size>MAX_FILE_SIZE:
                 save_img(bytes_,new_file)
             else:
