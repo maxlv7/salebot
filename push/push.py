@@ -17,12 +17,14 @@ def send_group_msg(group_id, message, auto_escape=False):
         "message": message,
         "auto_escape": auto_escape
     }
-    res = requests.post(msg_config.get("send_group_msg"), json=data)
-    if res.json().get("status") == "ok":
-        botLog.info(f"转发到{group_id}---<<<成功!!!>>>{message[:10]}")
-    else:
-        botLog.info(f"转发到{group_id}---<<<失败!!!>>>{message[:10]}")
-
+    try:
+        res = requests.post(msg_config.get("send_group_msg"), json=data,timeout=30)
+        if res.json().get("status") == "ok":
+            botLog.info(f"转发到{group_id}---<<<成功!!!>>>{message[:10]}")
+        else:
+            botLog.info(f"转发到{group_id}---<<<失败!!!>>>(其它原因){message[:10]}")
+    except:
+        botLog.info(f"转发到{group_id}---<<<失败!!!>>>(超时){message[:10]}")
 
 if __name__ == '__main__':
     send_group_msg("644919551", "test")

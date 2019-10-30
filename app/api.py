@@ -70,7 +70,7 @@ def get_info():
             msg = data_format(auto_increment_id, get_type_name_by_id(type), content+contact)
         # msg = f"图片测试[CQ:image,file=http://127.0.0.1:5000/upload/{filename}]"
         botLog.info("开始转发消息给管理群...")
-        executor.submit(send_group_msg(config.get("JUDGE_GROUP"), message=msg))
+        executor.submit(send_group_msg,config.get("JUDGE_GROUP"),message=msg)
         botLog.info("结束转发消息给管理群...")
         botLog.info(f"类型：{type} qq：{qq} 微信：{we_chat} 电话：{phone} \n内容：{content}")
 
