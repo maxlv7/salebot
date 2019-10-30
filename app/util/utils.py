@@ -63,10 +63,9 @@ def get_contact(qq, we_chat, phone):
     return msg
 
 def save_img(bytes, file_path,quality=35):
-    im = Image.open(bytes)
-
-    mode_list = ['1', 'L', 'I', 'F', 'P', 'RGB', 'RGBA', 'CMYK', 'YCbCr']
-    if im.mode in mode_list:
-        im = im.convert('RGB')
-    # subsampling=0
-    im.save("{}".format(file_path), 'jpeg', quality=quality)
+    with Image.open(bytes) as im:
+        mode_list = ['1', 'L', 'I', 'F', 'P', 'RGB', 'RGBA', 'CMYK', 'YCbCr']
+        if im.mode in mode_list:
+            im = im.convert('RGB')
+        # subsampling=0
+        im.save("{}".format(file_path), 'jpeg', quality=quality)
